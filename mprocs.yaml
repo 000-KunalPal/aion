@@ -1,0 +1,5 @@
+procs:
+  convex:
+    shell: "pnpm dlx convex dev"
+  web:
+    shell: "pnpm dev"

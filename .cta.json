@@ -1,0 +1,20 @@
+{
+  "projectName": "aion",
+  "mode": "file-router",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "pnpm",
+  "addOnOptions": {},
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "biome",
+    "start",
+    "convex",
+    "compiler",
+    "form",
+    "shadcn",
+    "tanstack-query"
+  ]
+}
