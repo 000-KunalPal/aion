@@ -17,16 +17,16 @@
       "!**/src/components/ui/**/*"
     ]
   },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "tab"
-  },
   "assist": {
     "actions": {
       "source": {
         "organizeImports": "on"
       }
     }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "tab"
   },
   "linter": {
     "enabled": true,
@@ -38,6 +38,9 @@
       },
       "suspicious": {
         "noExplicitAny": "warn"
+      },
+      "performance": {
+        "noNamespaceImport": "off"
       }
     }
   },

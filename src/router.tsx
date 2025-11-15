@@ -1,4 +1,5 @@
 import { ConvexQueryClient } from "@convex-dev/react-query";
+import * as Sentry from "@sentry/tanstackstart-react";
 import { notifyManager, QueryClient } from "@tanstack/react-query";
 import { createRouter } from "@tanstack/react-router";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
@@ -38,6 +39,9 @@ export const getRouter = () => {
 		routeTree,
 		defaultPreload: "intent",
 		defaultErrorComponent: DefaultCatchBoundary,
+		defaultOnCatch: (error, errorInfo) => {
+			Sentry.captureReactException(error, errorInfo);
+		},
 		defaultNotFoundComponent: () => <NotFound />,
 		context: { queryClient, convexClient: convex, convexQueryClient },
 		Wrap: ({ children }: { children: React.ReactNode }) => (
@@ -47,6 +51,13 @@ export const getRouter = () => {
 		),
 		scrollRestoration: true,
 	});
+
+	if (!router.isServer) {
+		Sentry.init({
+			dsn: import.meta.env.VITE_SENTRY_DSN,
+			integrations: [],
+		});
+	}
 
 	setupRouterSsrQueryIntegration({ router, queryClient });
 
