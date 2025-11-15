@@ -9,125 +9,203 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AppRouteImport } from './routes/_app'
-import { Route as MarketingIndexRouteImport } from './routes/_marketing/index'
-import { Route as MarketingPricingRouteImport } from './routes/_marketing/pricing'
-import { Route as AuthAuthRouteImport } from './routes/_auth/auth'
-import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as authAuthRouteImport } from './routes/(auth)/_auth'
+import { Route as appDashboardRouteImport } from './routes/(app)/_dashboard'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as authAuthAuthRouteImport } from './routes/(auth)/_auth.auth'
+import { Route as appMarketingMarketingRouteImport } from './routes/(app)/_marketing/_marketing'
+import { Route as appMarketingMarketingIndexRouteImport } from './routes/(app)/_marketing/_marketing.index'
+import { Route as appDashboardautomationAutomationRouteImport } from './routes/(app)/_dashboard/(automation)/_automation'
+import { Route as appDashboardeditorWorkflowsWorkflowIdRouteImport } from './routes/(app)/_dashboard/(editor)/workflows.$workflowId'
+import { Route as appDashboardautomationAutomationWorkflowsRouteImport } from './routes/(app)/_dashboard/(automation)/_automation/workflows'
+import { Route as appDashboardautomationAutomationExecutionsRouteImport } from './routes/(app)/_dashboard/(automation)/_automation/executions'
+import { Route as appDashboardautomationAutomationCredentialsRouteImport } from './routes/(app)/_dashboard/(automation)/_automation/credentials'
+import { Route as appDashboardautomationAutomationSentryTestingRouteImport } from './routes/(app)/_dashboard/(automation)/_automation/sentry.testing'
+import { Route as appDashboardautomationAutomationExecutionsExecutionIdRouteImport } from './routes/(app)/_dashboard/(automation)/_automation/executions.$executionId'
+import { Route as appDashboardautomationAutomationCredentialsCredentialIdRouteImport } from './routes/(app)/_dashboard/(automation)/_automation/credentials.$credentialId'
 
-const AppRoute = AppRouteImport.update({
-  id: '/_app',
+const authAuthRoute = authAuthRouteImport.update({
+  id: '/(auth)/_auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MarketingIndexRoute = MarketingIndexRouteImport.update({
-  id: '/_marketing/',
-  path: '/',
+const appDashboardRoute = appDashboardRouteImport.update({
+  id: '/(app)/_dashboard',
   getParentRoute: () => rootRouteImport,
-} as any)
-const MarketingPricingRoute = MarketingPricingRouteImport.update({
-  id: '/_marketing/pricing',
-  path: '/pricing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthAuthRoute = AuthAuthRouteImport.update({
-  id: '/_auth/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppDashboardRoute = AppDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => AppRoute,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const authAuthAuthRoute = authAuthAuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => authAuthRoute,
+} as any)
+const appMarketingMarketingRoute = appMarketingMarketingRouteImport.update({
+  id: '/(app)/_marketing/_marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const appMarketingMarketingIndexRoute =
+  appMarketingMarketingIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => appMarketingMarketingRoute,
+  } as any)
+const appDashboardautomationAutomationRoute =
+  appDashboardautomationAutomationRouteImport.update({
+    id: '/(automation)/_automation',
+    getParentRoute: () => appDashboardRoute,
+  } as any)
+const appDashboardeditorWorkflowsWorkflowIdRoute =
+  appDashboardeditorWorkflowsWorkflowIdRouteImport.update({
+    id: '/(editor)/workflows/$workflowId',
+    path: '/workflows/$workflowId',
+    getParentRoute: () => appDashboardRoute,
+  } as any)
+const appDashboardautomationAutomationWorkflowsRoute =
+  appDashboardautomationAutomationWorkflowsRouteImport.update({
+    id: '/workflows',
+    path: '/workflows',
+    getParentRoute: () => appDashboardautomationAutomationRoute,
+  } as any)
+const appDashboardautomationAutomationExecutionsRoute =
+  appDashboardautomationAutomationExecutionsRouteImport.update({
+    id: '/executions',
+    path: '/executions',
+    getParentRoute: () => appDashboardautomationAutomationRoute,
+  } as any)
+const appDashboardautomationAutomationCredentialsRoute =
+  appDashboardautomationAutomationCredentialsRouteImport.update({
+    id: '/credentials',
+    path: '/credentials',
+    getParentRoute: () => appDashboardautomationAutomationRoute,
+  } as any)
+const appDashboardautomationAutomationSentryTestingRoute =
+  appDashboardautomationAutomationSentryTestingRouteImport.update({
+    id: '/sentry/testing',
+    path: '/sentry/testing',
+    getParentRoute: () => appDashboardautomationAutomationRoute,
+  } as any)
+const appDashboardautomationAutomationExecutionsExecutionIdRoute =
+  appDashboardautomationAutomationExecutionsExecutionIdRouteImport.update({
+    id: '/$executionId',
+    path: '/$executionId',
+    getParentRoute: () => appDashboardautomationAutomationExecutionsRoute,
+  } as any)
+const appDashboardautomationAutomationCredentialsCredentialIdRoute =
+  appDashboardautomationAutomationCredentialsCredentialIdRouteImport.update({
+    id: '/$credentialId',
+    path: '/$credentialId',
+    getParentRoute: () => appDashboardautomationAutomationCredentialsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/dashboard': typeof AppDashboardRoute
-  '/auth': typeof AuthAuthRoute
-  '/pricing': typeof MarketingPricingRoute
-  '/': typeof MarketingIndexRoute
+  '/auth': typeof authAuthAuthRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/': typeof appMarketingMarketingIndexRoute
+  '/credentials': typeof appDashboardautomationAutomationCredentialsRouteWithChildren
+  '/executions': typeof appDashboardautomationAutomationExecutionsRouteWithChildren
+  '/workflows': typeof appDashboardautomationAutomationWorkflowsRoute
+  '/workflows/$workflowId': typeof appDashboardeditorWorkflowsWorkflowIdRoute
+  '/credentials/$credentialId': typeof appDashboardautomationAutomationCredentialsCredentialIdRoute
+  '/executions/$executionId': typeof appDashboardautomationAutomationExecutionsExecutionIdRoute
+  '/sentry/testing': typeof appDashboardautomationAutomationSentryTestingRoute
 }
 export interface FileRoutesByTo {
-  '/dashboard': typeof AppDashboardRoute
-  '/auth': typeof AuthAuthRoute
-  '/pricing': typeof MarketingPricingRoute
-  '/': typeof MarketingIndexRoute
+  '/auth': typeof authAuthAuthRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/': typeof appMarketingMarketingIndexRoute
+  '/credentials': typeof appDashboardautomationAutomationCredentialsRouteWithChildren
+  '/executions': typeof appDashboardautomationAutomationExecutionsRouteWithChildren
+  '/workflows': typeof appDashboardautomationAutomationWorkflowsRoute
+  '/workflows/$workflowId': typeof appDashboardeditorWorkflowsWorkflowIdRoute
+  '/credentials/$credentialId': typeof appDashboardautomationAutomationCredentialsCredentialIdRoute
+  '/executions/$executionId': typeof appDashboardautomationAutomationExecutionsExecutionIdRoute
+  '/sentry/testing': typeof appDashboardautomationAutomationSentryTestingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_app': typeof AppRouteWithChildren
-  '/_app/dashboard': typeof AppDashboardRoute
-  '/_auth/auth': typeof AuthAuthRoute
-  '/_marketing/pricing': typeof MarketingPricingRoute
-  '/_marketing/': typeof MarketingIndexRoute
+  '/(app)/_dashboard': typeof appDashboardRouteWithChildren
+  '/(auth)/_auth': typeof authAuthRouteWithChildren
+  '/(app)/_marketing/_marketing': typeof appMarketingMarketingRouteWithChildren
+  '/(auth)/_auth/auth': typeof authAuthAuthRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/(app)/_dashboard/(automation)/_automation': typeof appDashboardautomationAutomationRouteWithChildren
+  '/(app)/_marketing/_marketing/': typeof appMarketingMarketingIndexRoute
+  '/(app)/_dashboard/(automation)/_automation/credentials': typeof appDashboardautomationAutomationCredentialsRouteWithChildren
+  '/(app)/_dashboard/(automation)/_automation/executions': typeof appDashboardautomationAutomationExecutionsRouteWithChildren
+  '/(app)/_dashboard/(automation)/_automation/workflows': typeof appDashboardautomationAutomationWorkflowsRoute
+  '/(app)/_dashboard/(editor)/workflows/$workflowId': typeof appDashboardeditorWorkflowsWorkflowIdRoute
+  '/(app)/_dashboard/(automation)/_automation/credentials/$credentialId': typeof appDashboardautomationAutomationCredentialsCredentialIdRoute
+  '/(app)/_dashboard/(automation)/_automation/executions/$executionId': typeof appDashboardautomationAutomationExecutionsExecutionIdRoute
+  '/(app)/_dashboard/(automation)/_automation/sentry/testing': typeof appDashboardautomationAutomationSentryTestingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/dashboard' | '/auth' | '/pricing' | '/' | '/api/auth/$'
+  fullPaths:
+    | '/auth'
+    | '/api/auth/$'
+    | '/'
+    | '/credentials'
+    | '/executions'
+    | '/workflows'
+    | '/workflows/$workflowId'
+    | '/credentials/$credentialId'
+    | '/executions/$executionId'
+    | '/sentry/testing'
   fileRoutesByTo: FileRoutesByTo
-  to: '/dashboard' | '/auth' | '/pricing' | '/' | '/api/auth/$'
+  to:
+    | '/auth'
+    | '/api/auth/$'
+    | '/'
+    | '/credentials'
+    | '/executions'
+    | '/workflows'
+    | '/workflows/$workflowId'
+    | '/credentials/$credentialId'
+    | '/executions/$executionId'
+    | '/sentry/testing'
   id:
     | '__root__'
-    | '/_app'
-    | '/_app/dashboard'
-    | '/_auth/auth'
-    | '/_marketing/pricing'
-    | '/_marketing/'
+    | '/(app)/_dashboard'
+    | '/(auth)/_auth'
+    | '/(app)/_marketing/_marketing'
+    | '/(auth)/_auth/auth'
     | '/api/auth/$'
+    | '/(app)/_dashboard/(automation)/_automation'
+    | '/(app)/_marketing/_marketing/'
+    | '/(app)/_dashboard/(automation)/_automation/credentials'
+    | '/(app)/_dashboard/(automation)/_automation/executions'
+    | '/(app)/_dashboard/(automation)/_automation/workflows'
+    | '/(app)/_dashboard/(editor)/workflows/$workflowId'
+    | '/(app)/_dashboard/(automation)/_automation/credentials/$credentialId'
+    | '/(app)/_dashboard/(automation)/_automation/executions/$executionId'
+    | '/(app)/_dashboard/(automation)/_automation/sentry/testing'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  AppRoute: typeof AppRouteWithChildren
-  AuthAuthRoute: typeof AuthAuthRoute
-  MarketingPricingRoute: typeof MarketingPricingRoute
-  MarketingIndexRoute: typeof MarketingIndexRoute
+  appDashboardRoute: typeof appDashboardRouteWithChildren
+  authAuthRoute: typeof authAuthRouteWithChildren
+  appMarketingMarketingRoute: typeof appMarketingMarketingRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_app': {
-      id: '/_app'
+    '/(auth)/_auth': {
+      id: '/(auth)/_auth'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof AppRouteImport
+      preLoaderRoute: typeof authAuthRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_marketing/': {
-      id: '/_marketing/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof MarketingIndexRouteImport
+    '/(app)/_dashboard': {
+      id: '/(app)/_dashboard'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof appDashboardRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/_marketing/pricing': {
-      id: '/_marketing/pricing'
-      path: '/pricing'
-      fullPath: '/pricing'
-      preLoaderRoute: typeof MarketingPricingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_auth/auth': {
-      id: '/_auth/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthAuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_app/dashboard': {
-      id: '/_app/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof AppDashboardRouteImport
-      parentRoute: typeof AppRoute
     }
     '/api/auth/$': {
       id: '/api/auth/$'
@@ -136,24 +214,185 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(auth)/_auth/auth': {
+      id: '/(auth)/_auth/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof authAuthAuthRouteImport
+      parentRoute: typeof authAuthRoute
+    }
+    '/(app)/_marketing/_marketing': {
+      id: '/(app)/_marketing/_marketing'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof appMarketingMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(app)/_marketing/_marketing/': {
+      id: '/(app)/_marketing/_marketing/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof appMarketingMarketingIndexRouteImport
+      parentRoute: typeof appMarketingMarketingRoute
+    }
+    '/(app)/_dashboard/(automation)/_automation': {
+      id: '/(app)/_dashboard/(automation)/_automation'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof appDashboardautomationAutomationRouteImport
+      parentRoute: typeof appDashboardRoute
+    }
+    '/(app)/_dashboard/(editor)/workflows/$workflowId': {
+      id: '/(app)/_dashboard/(editor)/workflows/$workflowId'
+      path: '/workflows/$workflowId'
+      fullPath: '/workflows/$workflowId'
+      preLoaderRoute: typeof appDashboardeditorWorkflowsWorkflowIdRouteImport
+      parentRoute: typeof appDashboardRoute
+    }
+    '/(app)/_dashboard/(automation)/_automation/workflows': {
+      id: '/(app)/_dashboard/(automation)/_automation/workflows'
+      path: '/workflows'
+      fullPath: '/workflows'
+      preLoaderRoute: typeof appDashboardautomationAutomationWorkflowsRouteImport
+      parentRoute: typeof appDashboardautomationAutomationRoute
+    }
+    '/(app)/_dashboard/(automation)/_automation/executions': {
+      id: '/(app)/_dashboard/(automation)/_automation/executions'
+      path: '/executions'
+      fullPath: '/executions'
+      preLoaderRoute: typeof appDashboardautomationAutomationExecutionsRouteImport
+      parentRoute: typeof appDashboardautomationAutomationRoute
+    }
+    '/(app)/_dashboard/(automation)/_automation/credentials': {
+      id: '/(app)/_dashboard/(automation)/_automation/credentials'
+      path: '/credentials'
+      fullPath: '/credentials'
+      preLoaderRoute: typeof appDashboardautomationAutomationCredentialsRouteImport
+      parentRoute: typeof appDashboardautomationAutomationRoute
+    }
+    '/(app)/_dashboard/(automation)/_automation/sentry/testing': {
+      id: '/(app)/_dashboard/(automation)/_automation/sentry/testing'
+      path: '/sentry/testing'
+      fullPath: '/sentry/testing'
+      preLoaderRoute: typeof appDashboardautomationAutomationSentryTestingRouteImport
+      parentRoute: typeof appDashboardautomationAutomationRoute
+    }
+    '/(app)/_dashboard/(automation)/_automation/executions/$executionId': {
+      id: '/(app)/_dashboard/(automation)/_automation/executions/$executionId'
+      path: '/$executionId'
+      fullPath: '/executions/$executionId'
+      preLoaderRoute: typeof appDashboardautomationAutomationExecutionsExecutionIdRouteImport
+      parentRoute: typeof appDashboardautomationAutomationExecutionsRoute
+    }
+    '/(app)/_dashboard/(automation)/_automation/credentials/$credentialId': {
+      id: '/(app)/_dashboard/(automation)/_automation/credentials/$credentialId'
+      path: '/$credentialId'
+      fullPath: '/credentials/$credentialId'
+      preLoaderRoute: typeof appDashboardautomationAutomationCredentialsCredentialIdRouteImport
+      parentRoute: typeof appDashboardautomationAutomationCredentialsRoute
+    }
   }
 }
 
-interface AppRouteChildren {
-  AppDashboardRoute: typeof AppDashboardRoute
+interface appDashboardautomationAutomationCredentialsRouteChildren {
+  appDashboardautomationAutomationCredentialsCredentialIdRoute: typeof appDashboardautomationAutomationCredentialsCredentialIdRoute
 }
 
-const AppRouteChildren: AppRouteChildren = {
-  AppDashboardRoute: AppDashboardRoute,
+const appDashboardautomationAutomationCredentialsRouteChildren: appDashboardautomationAutomationCredentialsRouteChildren =
+  {
+    appDashboardautomationAutomationCredentialsCredentialIdRoute:
+      appDashboardautomationAutomationCredentialsCredentialIdRoute,
+  }
+
+const appDashboardautomationAutomationCredentialsRouteWithChildren =
+  appDashboardautomationAutomationCredentialsRoute._addFileChildren(
+    appDashboardautomationAutomationCredentialsRouteChildren,
+  )
+
+interface appDashboardautomationAutomationExecutionsRouteChildren {
+  appDashboardautomationAutomationExecutionsExecutionIdRoute: typeof appDashboardautomationAutomationExecutionsExecutionIdRoute
 }
 
-const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+const appDashboardautomationAutomationExecutionsRouteChildren: appDashboardautomationAutomationExecutionsRouteChildren =
+  {
+    appDashboardautomationAutomationExecutionsExecutionIdRoute:
+      appDashboardautomationAutomationExecutionsExecutionIdRoute,
+  }
+
+const appDashboardautomationAutomationExecutionsRouteWithChildren =
+  appDashboardautomationAutomationExecutionsRoute._addFileChildren(
+    appDashboardautomationAutomationExecutionsRouteChildren,
+  )
+
+interface appDashboardautomationAutomationRouteChildren {
+  appDashboardautomationAutomationCredentialsRoute: typeof appDashboardautomationAutomationCredentialsRouteWithChildren
+  appDashboardautomationAutomationExecutionsRoute: typeof appDashboardautomationAutomationExecutionsRouteWithChildren
+  appDashboardautomationAutomationWorkflowsRoute: typeof appDashboardautomationAutomationWorkflowsRoute
+  appDashboardautomationAutomationSentryTestingRoute: typeof appDashboardautomationAutomationSentryTestingRoute
+}
+
+const appDashboardautomationAutomationRouteChildren: appDashboardautomationAutomationRouteChildren =
+  {
+    appDashboardautomationAutomationCredentialsRoute:
+      appDashboardautomationAutomationCredentialsRouteWithChildren,
+    appDashboardautomationAutomationExecutionsRoute:
+      appDashboardautomationAutomationExecutionsRouteWithChildren,
+    appDashboardautomationAutomationWorkflowsRoute:
+      appDashboardautomationAutomationWorkflowsRoute,
+    appDashboardautomationAutomationSentryTestingRoute:
+      appDashboardautomationAutomationSentryTestingRoute,
+  }
+
+const appDashboardautomationAutomationRouteWithChildren =
+  appDashboardautomationAutomationRoute._addFileChildren(
+    appDashboardautomationAutomationRouteChildren,
+  )
+
+interface appDashboardRouteChildren {
+  appDashboardautomationAutomationRoute: typeof appDashboardautomationAutomationRouteWithChildren
+  appDashboardeditorWorkflowsWorkflowIdRoute: typeof appDashboardeditorWorkflowsWorkflowIdRoute
+}
+
+const appDashboardRouteChildren: appDashboardRouteChildren = {
+  appDashboardautomationAutomationRoute:
+    appDashboardautomationAutomationRouteWithChildren,
+  appDashboardeditorWorkflowsWorkflowIdRoute:
+    appDashboardeditorWorkflowsWorkflowIdRoute,
+}
+
+const appDashboardRouteWithChildren = appDashboardRoute._addFileChildren(
+  appDashboardRouteChildren,
+)
+
+interface authAuthRouteChildren {
+  authAuthAuthRoute: typeof authAuthAuthRoute
+}
+
+const authAuthRouteChildren: authAuthRouteChildren = {
+  authAuthAuthRoute: authAuthAuthRoute,
+}
+
+const authAuthRouteWithChildren = authAuthRoute._addFileChildren(
+  authAuthRouteChildren,
+)
+
+interface appMarketingMarketingRouteChildren {
+  appMarketingMarketingIndexRoute: typeof appMarketingMarketingIndexRoute
+}
+
+const appMarketingMarketingRouteChildren: appMarketingMarketingRouteChildren = {
+  appMarketingMarketingIndexRoute: appMarketingMarketingIndexRoute,
+}
+
+const appMarketingMarketingRouteWithChildren =
+  appMarketingMarketingRoute._addFileChildren(
+    appMarketingMarketingRouteChildren,
+  )
 
 const rootRouteChildren: RootRouteChildren = {
-  AppRoute: AppRouteWithChildren,
-  AuthAuthRoute: AuthAuthRoute,
-  MarketingPricingRoute: MarketingPricingRoute,
-  MarketingIndexRoute: MarketingIndexRoute,
+  appDashboardRoute: appDashboardRouteWithChildren,
+  authAuthRoute: authAuthRouteWithChildren,
+  appMarketingMarketingRoute: appMarketingMarketingRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

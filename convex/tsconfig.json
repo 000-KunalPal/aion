@@ -12,7 +12,11 @@
     "module": "ESNext",
     "isolatedModules": true,
     "noEmit": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["../src/*"]
+    }
   },
   "include": ["./**/*"],
   "exclude": ["./_generated"]
