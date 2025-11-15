@@ -9,6 +9,7 @@
  */
 
 import type * as auth from "../auth.js";
+import type * as autumn from "../autumn.js";
 import type * as http from "../http.js";
 import type * as index from "../index.js";
 import type * as private_workflows from "../private/workflows.js";
@@ -22,6 +23,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
+  autumn: typeof autumn;
   http: typeof http;
   index: typeof index;
   "private/workflows": typeof private_workflows;
@@ -5396,4 +5398,5 @@ export declare const components: {
       };
     };
   };
+  autumn: {};
 };
