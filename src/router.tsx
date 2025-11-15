@@ -3,7 +3,9 @@ import * as Sentry from "@sentry/tanstackstart-react";
 import { notifyManager, QueryClient } from "@tanstack/react-query";
 import { createRouter } from "@tanstack/react-router";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
+import { AutumnProvider } from "autumn-js/react";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { api } from "../convex/_generated/api";
 import { DefaultCatchBoundary } from "./components/default-catch-boundary";
 import { NotFound } from "./components/not-found";
 // Import the generated route tree
@@ -46,7 +48,9 @@ export const getRouter = () => {
 		context: { queryClient, convexClient: convex, convexQueryClient },
 		Wrap: ({ children }: { children: React.ReactNode }) => (
 			<ConvexProvider client={convexQueryClient.convexClient}>
-				{children}
+				<AutumnProvider convex={convex} convexApi={api.autumn}>
+					{children}
+				</AutumnProvider>
 			</ConvexProvider>
 		),
 		scrollRestoration: true,
